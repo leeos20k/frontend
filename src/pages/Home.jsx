@@ -45,7 +45,7 @@ function Home() {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className="btn btn-outline-secondary mx-2">보기</button>
+                    <Link to={`/viewuser/${user.id}`} className="btn btn-outline-secondary mx-2">보기</Link>
                     <Link to={`/edituser/${user.id}`}className="btn btn-outline-warning mx-2">수정</Link>
                     <button onClick={()=>deleteUser(user.id)} className="btn btn-outline-danger mx-2">삭제</button>
                   </td>
