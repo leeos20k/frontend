@@ -1,15 +1,30 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const EditUser = () => {
   let navigate = useNavigate(); //네비게이트 객체 생성
+
+  //요청주소의 id값을 받음
+  const {id} = useParams();
 
   const [user, setUser] = useState({
     name: '',
     username: '',
     email: ''
-  })
+  });
+
+    //앱 실행시 한번 실행
+    useEffect(() => {
+      loadUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+  
+    //async는 만약 함수 function 앞에 붙임
+    const loadUser = async () => {
+      const result = await axios.get(`http://localhost:8080/users/${id}`);
+      setUser(result.data);
+    };
 
   const onInputChange = (e) => {
     setUser({
