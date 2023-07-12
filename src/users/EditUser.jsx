@@ -40,7 +40,7 @@ const EditUser = () => {
   const onSubmit = async(e) => {
     e.preventDefault(); //기본 전송 기능 중지
     //백엔드서버로 user 데이터 전송
-    await axios.post('http://localhost:8080/user', user);
+    await axios.put(`http://localhost:8080/user/${id}`, user);
     //바로 홈페이지로 이동(리스트에 새유저가 보임)
     navigate("/");
   }
