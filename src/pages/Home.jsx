@@ -17,6 +17,14 @@ function Home() {
     setUsers(result.data);
   };
 
+  const deleteUser = async (id) => {
+    if(window.confirm('정말로 삭제하시겠습니까?')){
+      await axios.delete(`http://localhost:8080/user/${id}`);
+      loadUsers();
+    }
+  }
+
+
   return (
   <div className="container">
         <table className="table border text-center shadow my-4">
@@ -39,7 +47,7 @@ function Home() {
                   <td>
                     <button className="btn btn-outline-secondary mx-2">보기</button>
                     <Link to={`/edituser/${user.id}`}className="btn btn-outline-warning mx-2">수정</Link>
-                    <button className="btn btn-outline-danger mx-2">삭제</button>
+                    <button onClick={()=>deleteUser(user.id)} className="btn btn-outline-danger mx-2">삭제</button>
                   </td>
                 </tr>
               ))}
